@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rayan | Personal Website</title>
+  <style>
+    :root {
+      --paper: #090f1f;
+      --ink: #f6e7c8;
+      --muted: #b8a98d;
+      --line: rgba(246, 231, 200, 0.18);
+      --accent: #ffd166;
+      --soft: #111a2e;
+      --navy: #07111f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 26px 0 60px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 18px;
+      margin-bottom: 46px;
+    }
+
+    .brand {
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav a:hover { color: var(--accent); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 44px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 24px;
+      border: 2px solid var(--ink);
+      background: var(--soft);
+      padding: 28px;
+      box-shadow: 10px 10px 0 var(--ink);
+    }
+
+    .profile-mark {
+      height: 170px;
+      border: 2px solid var(--ink);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.16) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.16) 1px, transparent 1px),
+        var(--accent);
+      background-size: 18px 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .laptop-art {
+      width: 150px;
+      height: 105px;
+      position: relative;
+      image-rendering: pixelated;
+      transform: translateY(4px);
+    }
+
+    .laptop-screen {
+      width: 112px;
+      height: 72px;
+      margin: 0 auto;
+      border: 4px solid var(--ink);
+      border-radius: 6px 6px 2px 2px;
+      background: var(--navy);
+      position: relative;
+      box-shadow: inset 0 0 0 4px rgba(255,255,255,0.08);
+    }
+
+    .laptop-screen::before {
+      content: "</>";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -52%);
+      color: #ffd166;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .laptop-screen::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      left: 14px;
+      top: 12px;
+      background: #ff6b35;
+      box-shadow:
+        18px 0 0 #ffd166,
+        36px 0 0 #f6f1e8,
+        74px 36px 0 rgba(255,255,255,0.16),
+        58px 36px 0 rgba(255,255,255,0.16),
+        42px 36px 0 rgba(255,255,255,0.16);
+    }
+
+    .laptop-base {
+      width: 146px;
+      height: 24px;
+      margin: -1px auto 0;
+      border: 4px solid var(--ink);
+      border-radius: 2px 2px 12px 12px;
+      background: var(--paper);
+      position: relative;
+    }
+
+    .laptop-base::before {
+      content: "";
+      position: absolute;
+      width: 42px;
+      height: 6px;
+      left: 50%;
+      top: 5px;
+      transform: translateX(-50%);
+      border: 2px solid var(--ink);
+      background: #d8d0c3;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .laptop-shadow {
+      width: 118px;
+      height: 12px;
+      margin: 7px auto 0;
+      background: rgba(17, 24, 39, 0.22);
+      border-radius: 50%;
+    }
+
+    .sidebar h1 {
+      font-size: 2.25rem;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .role {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    .sidebar p { color: var(--muted); margin-bottom: 22px; }
+
+    .info-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 22px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .info-list div {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    .info-list span { color: var(--muted); text-align: right; }
+
+    .button {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      margin-top: 24px;
+      padding: 12px 18px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      border: 2px solid var(--ink);
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      background: var(--accent);
+      color: var(--ink);
+      transform: translate(-3px, -3px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .content { display: grid; gap: 30px; }
+
+    .hero {
+      min-height: 450px;
+      border: 2px solid var(--ink);
+      background: var(--navy);
+      color: var(--paper);
+      padding: 44px;
+      display: grid;
+      align-content: end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "</>";
+      position: absolute;
+      top: -42px;
+      right: 22px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      font-size: 12rem;
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    .kicker {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ffd166;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .hero h2 {
+      max-width: 760px;
+      font-size: clamp(2.4rem, 7vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      color: rgba(246, 241, 232, 0.82);
+      font-size: 1.08rem;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .section {
+      border: 2px solid var(--ink);
+      background: var(--soft);
+      padding: 34px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .section-title span {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      border: 2px solid var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+    }
+
+    .section-title h2 { font-size: 2rem; line-height: 1; }
+    .section p { color: var(--muted); font-family: Arial, Helvetica, sans-serif; }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      padding: 20px;
+      background: #ffffff66;
+    }
+
+    .mini-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      padding: 10px 14px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .projects { display: grid; gap: 16px; }
+
+    .project {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 18px;
+      border-top: 2px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .project:first-child { border-top: 0; padding-top: 0; }
+
+    .project-number {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .project h3 { font-size: 1.35rem; margin-bottom: 6px; }
+
+    .timeline {
+      display: grid;
+      gap: 0;
+      border-left: 3px solid var(--ink);
+      margin-left: 8px;
+    }
+
+    .step {
+      position: relative;
+      padding: 0 0 22px 26px;
+    }
+
+    .step:last-child { padding-bottom: 0; }
+
+    .step::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 3px solid var(--ink);
+      background: var(--accent);
+      position: absolute;
+      left: -9px;
+      top: 6px;
+      border-radius: 50%;
+    }
+
+    .step h3 { font-size: 1.2rem; margin-bottom: 5px; }
+
+    .contact {
+      text-align: center;
+      background: var(--accent);
+    }
+
+    .contact h2 {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .contact p {
+      color: var(--ink);
+      max-width: 620px;
+      margin: 0 auto 20px;
+    }
+
+    footer {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 2px solid var(--ink);
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 930px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+
+    @media (max-width: 680px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .hero, .section { padding: 26px; }
+      .split, .project { grid-template-columns: 1fr; }
+      .project-number { font-size: 2.2rem; }
+    }
+
+    /* New home-office night scene */
+    .room-scene {
+      height: 210px;
+      background:
+        linear-gradient(180deg, #101827 0%, #192235 62%, #2d241d 62%, #2d241d 100%);
+      position: relative;
+      overflow: hidden;
+      display: block;
+    }
+
+    .room-scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 36% 54%, rgba(255, 210, 130, 0.20), transparent 34%),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: auto, 28px 28px;
+      pointer-events: none;
+    }
+
+    .night-window {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 76px;
+      height: 72px;
+      border: 3px solid var(--ink);
+      background: linear-gradient(180deg, #07111f, #0c2442);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .night-window::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--ink);
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .night-window::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 3px;
+      background: var(--ink);
+      transform: translateY(-50%);
+      z-index: 3;
+    }
+
+    .moon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ffd166;
+      box-shadow: 0 0 14px rgba(255, 209, 102, 0.65);
+    }
+
+    .rain {
+      position: absolute;
+      top: -22px;
+      width: 2px;
+      height: 22px;
+      background: rgba(165, 205, 255, 0.85);
+      transform: rotate(14deg);
+      animation: rainDrop 0.75s linear infinite;
+      z-index: 2;
+    }
+
+    .rain-1 { left: 10px; animation-delay: 0s; }
+    .rain-2 { left: 22px; animation-delay: 0.12s; }
+    .rain-3 { left: 34px; animation-delay: 0.24s; }
+    .rain-4 { left: 46px; animation-delay: 0.08s; }
+    .rain-5 { left: 58px; animation-delay: 0.30s; }
+    .rain-6 { left: 68px; animation-delay: 0.18s; }
+
+    @keyframes rainDrop {
+      from { transform: translateY(-24px) rotate(14deg); opacity: 0; }
+      15% { opacity: 1; }
+      to { transform: translateY(105px) rotate(14deg); opacity: 0; }
+    }
+
+    .desk {
+      position: absolute;
+      left: 22px;
+      right: 20px;
+      bottom: 28px;
+      height: 22px;
+      border: 3px solid var(--ink);
+      background: #8b5a35;
+      box-shadow: 0 11px 0 #5c3822;
+      z-index: 5;
+    }
+
+    .desk-lamp {
+      position: absolute;
+      left: 28px;
+      bottom: 51px;
+      width: 78px;
+      height: 100px;
+      z-index: 7;
+    }
+
+    .lamp-head {
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      width: 48px;
+      height: 26px;
+      border: 3px solid var(--ink);
+      border-radius: 24px 24px 6px 6px;
+      background: #ffd166;
+      transform: translateX(-50%);
+      z-index: 9;
+    }
+
+    .lamp-neck {
+      position: absolute;
+      left: 50%;
+      top: 35px;
+      width: 8px;
+      height: 58px;
+      border: 2px solid var(--ink);
+      background: #d8d0c3;
+      transform: translateX(-50%);
+      z-index: 8;
+    }
+
+    .lamp-neck::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -8px;
+      width: 34px;
+      height: 10px;
+      border: 2px solid var(--ink);
+      border-radius: 12px 12px 4px 4px;
+      background: #d8d0c3;
+      transform: translateX(-50%);
+    }
+
+    .lamp-light {
+      position: absolute;
+      left: 50%;
+      top: 28px;
+      width: 126px;
+      height: 122px;
+      background: radial-gradient(circle, rgba(255, 209, 102, 0.40), rgba(255, 209, 102, 0.17) 38%, transparent 68%);
+      filter: blur(1px);
+      z-index: 1;
+      transform: translateX(-50%);
+      animation: lampFlicker 2.4s ease-in-out infinite;
+    }
+
+    @keyframes lampFlicker {
+      0%, 100% { opacity: 0.86; }
+      50% { opacity: 1; }
+    }
+
+    .scene-laptop {
+      position: absolute;
+      left: 86px;
+      bottom: 50px;
+      width: 136px;
+      height: 84px;
+      z-index: 10;
+      transform: perspective(150px) rotateX(1deg);
+    }
+
+    .scene-screen {
+      width: 108px;
+      height: 66px;
+      margin: 0 auto;
+      border: 3px solid var(--ink);
+      border-radius: 6px 6px 2px 2px;
+      background: #07111f;
+      box-shadow:
+        inset 0 0 0 3px rgba(255,255,255,0.06),
+        0 0 18px rgba(110, 168, 254, 0.45);
+      padding: 13px 12px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .scene-screen span {
+      display: block;
+      height: 5px;
+      border-radius: 8px;
+      background: #6ea8fe;
+      box-shadow: 16px 0 0 #ffd166;
+      animation: codePulse 1.6s ease-in-out infinite;
+    }
+
+    .scene-screen span:nth-child(1) { width: 62px; }
+    .scene-screen span:nth-child(2) { width: 42px; animation-delay: 0.2s; }
+    .scene-screen span:nth-child(3) { width: 70px; animation-delay: 0.4s; }
+    .scene-screen span:nth-child(4) { width: 50px; animation-delay: 0.6s; }
+
+    @keyframes codePulse {
+      0%, 100% { opacity: 0.55; }
+      50% { opacity: 1; }
+    }
+
+    .scene-keyboard {
+      width: 132px;
+      height: 18px;
+      margin: -1px auto 0;
+      border: 3px solid var(--ink);
+      border-radius: 2px 2px 10px 10px;
+      background: #f6f1e8;
+      position: relative;
+    }
+
+    .scene-keyboard::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 4px;
+      width: 34px;
+      height: 5px;
+      transform: translateX(-50%);
+      border: 2px solid var(--ink);
+      border-radius: 0 0 6px 6px;
+      background: #d8d0c3;
+    }
+
+
+    /* Night office color theme */
+    body {
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255, 209, 102, 0.10), transparent 28%),
+        radial-gradient(circle at 86% 18%, rgba(110, 168, 254, 0.10), transparent 30%),
+        linear-gradient(180deg, #090f1f 0%, #0b1224 48%, #070b16 100%);
+    }
+
+    .topbar {
+      border-bottom-color: rgba(246, 231, 200, 0.32);
+    }
+
+    .brand span,
+    .nav a:hover,
+    .role,
+    .project-number {
+      color: var(--accent);
+    }
+
+    .sidebar,
+    .section {
+      background:
+        linear-gradient(145deg, rgba(255, 209, 102, 0.045), rgba(110, 168, 254, 0.035)),
+        var(--soft);
+      border-color: rgba(246, 231, 200, 0.30);
+      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at 20% 80%, rgba(255, 209, 102, 0.12), transparent 28%),
+        radial-gradient(circle at 92% 12%, rgba(110, 168, 254, 0.12), transparent 28%),
+        var(--navy);
+      border-color: rgba(246, 231, 200, 0.30);
+      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.32);
+    }
+
+    .mini-card {
+      background: rgba(255, 255, 255, 0.035);
+      border-color: rgba(246, 231, 200, 0.14);
+    }
+
+    .skill {
+      background: #0b1224;
+      border-color: rgba(246, 231, 200, 0.32);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.35);
+      color: var(--ink);
+    }
+
+    .button {
+      background: var(--accent);
+      color: #090f1f;
+      border-color: var(--accent);
+    }
+
+    .button:hover {
+      background: #6ea8fe;
+      color: #07111f;
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+      border-color: #6ea8fe;
+    }
+
+    .contact {
+      background:
+        radial-gradient(circle at 18% 30%, rgba(255, 209, 102, 0.22), transparent 28%),
+        linear-gradient(135deg, #13213b, #0b1224);
+    }
+
+    .contact p {
+      color: var(--muted);
+    }
+
+    footer {
+      border-top-color: rgba(246, 231, 200, 0.25);
+    }
+
+    .info-list div,
+    .project {
+      border-color: rgba(246, 231, 200, 0.15);
+    }
+
+
+    /* Hero text readability fix */
+    .hero,
+    .hero h2 {
+      color: #fff2cf;
+    }
+
+    .hero h2 {
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+    }
+
+    .hero p {
+      color: #e8d9b8;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .kicker {
+      color: #ffd166;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="#">Rayan<span>/Portfolio</span></a>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#goals">Goals</a>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="profile-mark room-scene" aria-label="A small home office at night with a laptop, lamp, window, and rain animation">
+          <div class="night-window">
+            <div class="moon"></div>
+            <div class="rain rain-1"></div>
+            <div class="rain rain-2"></div>
+            <div class="rain rain-3"></div>
+            <div class="rain rain-4"></div>
+            <div class="rain rain-5"></div>
+            <div class="rain rain-6"></div>
+          </div>
+
+          <div class="desk-lamp">
+            <div class="lamp-head"></div>
+            <div class="lamp-neck"></div>
+            <div class="lamp-light"></div>
+          </div>
+
+          <div class="desk"></div>
+
+          <div class="scene-laptop">
+            <div class="scene-screen">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="scene-keyboard"></div>
+          </div>
+        </div>
+        <h1>Rayan Alz</h1>
+        <div class="role">Computer Science Student</div>
+        <p>
+          I build simple digital projects and keep improving my skills in web,
+          applications, artificial intelligence, and game development.
+        </p>
+
+        <div class="info-list">
+          <div><strong>Focus</strong><span>Web & Apps</span></div>
+          <div><strong>Major</strong><span>Computer Science</span></div>
+          <div><strong>Interest</strong><span>AI / Games / Writing</span></div>
+        </div>
+
+        <a class="button" href="https://github.com/Ray4095" target="_blank" rel="noopener">
+          GitHub Profile
+        </a>
+      </aside>
+
+      <section class="content">
+        <div class="hero">
+          <div class="kicker">Personal Website</div>
+          <h2>Designing ideas into clean digital experiences.</h2>
+          <p>
+            This website is a small introduction to who I am, what I am learning,
+            and the projects I am building as a Computer Science student.
+          </p>
+        </div>
+
+        <section class="section" id="about">
+          <div class="section-title"><span>01</span><h2>About Me</h2></div>
+          <div class="split">
+            <div class="mini-card">
+              <h3>Who I Am</h3>
+              <p>
+                I am a Computer Science student who enjoys learning by building.
+                I like projects that combine logic, design, and creativity.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h3>My Direction</h3>
+              <p>
+                My current focus is web and application development, while keeping
+                game development and artificial intelligence as important interests.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="skills">
+          <div class="section-title"><span>02</span><h2>Skills</h2></div>
+          <div class="skills">
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">C++</span>
+            <span class="skill">Java</span>
+            <span class="skill">Python</span>
+            <span class="skill">GitHub</span>
+            <span class="skill">Problem Solving</span>
+            <span class="skill">UI Thinking</span>
+          </div>
+        </section>
+
+        <section class="section" id="projects">
+          <div class="section-title"><span>03</span><h2>Projects</h2></div>
+          <div class="projects">
+            <article class="project">
+              <div class="project-number">01</div>
+              <div>
+                <h3>Instruction Set Interpreter</h3>
+                <p>
+                  A C++ university project that reads and handles instructions,
+                  focusing on logic, file handling, and clear program structure.
+                </p>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-number">02</div>
+              <div>
+                <h3>Data Structures Applications</h3>
+                <p>
+                  Practice projects using arrays, pointers, stacks, searching,
+                  and sorting to strengthen problem-solving skills.
+                </p>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-number">03</div>
+              <div>
+                <h3>Java OOP Student System</h3>
+                <p>
+                  A Java project applying object-oriented programming concepts such as
+                  classes, constructors, equals methods, and toString methods.
+                </p>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-number">04</div>
+              <div>
+                <h3>Operating Systems Tasks</h3>
+                <p>
+                  University tasks related to operating systems concepts, Linux basics,
+                  and command-line practice.
+                </p>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-number">05</div>
+              <div>
+                <h3>Personal Website</h3>
+                <p>
+                  A responsive one-page website built with HTML and CSS to present
+                  my background, skills, goals, and projects.
+                </p>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-number">06</div>
+              <div>
+                <h3>Image Classification</h3>
+                <p>
+                  An AI project using Python and Google Colab to train a simple
+                  image classification model.
+                </p>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-number">07</div>
+              <div>
+                <h3>Robotic Dog Design</h3>
+                <p>
+                  A mechanical design task that included model structure, joints,
+                  stability assumptions, and torque calculations.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="goals">
+          <div class="section-title"><span>04</span><h2>Goals</h2></div>
+          <div class="timeline">
+            <div class="step">
+              <h3>Full Stack Development</h3>
+              <p>Improve my ability to build complete web applications.</p>
+            </div>
+            <div class="step">
+              <h3>Real Projects</h3>
+              <p>Work on practical projects that can be shown in a portfolio.</p>
+            </div>
+            <div class="step">
+              <h3>Software Skills</h3>
+              <p>Strengthen programming, problem solving, and clean design habits.</p>
+            </div>
+            <div class="step">
+              <h3>Creative Technology</h3>
+              <p>Continue exploring games, AI, and creative digital experiences.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section contact" id="contact">
+          <h2>Let's Connect</h2>
+          <p>You can view my projects and future work through my GitHub profile.</p>
+          <a class="button" href="https://github.com/Ray4095" target="_blank" rel="noopener">
+            Visit GitHub
+          </a>
+        </section>
+      </section>
+    </main>
+
+    <footer>© 2026 Rayan Hamdan Alzaedi. Personal website built with HTML and CSS.</footer>
+  </div>
+</body>
+</html>
