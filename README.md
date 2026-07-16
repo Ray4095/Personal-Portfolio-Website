@@ -19,10 +19,6 @@ The design uses a dark night-office theme with an animated laptop, desk lamp, wi
 
 No JavaScript was used.
 
-## Files
-
-- `index.html` — contains the website structure and styling.
-
 ## Projects Included
 
 - Instruction Set Interpreter
